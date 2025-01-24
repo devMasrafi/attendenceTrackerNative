@@ -1,10 +1,11 @@
 import { Stack } from "expo-router";
 
-import "./global.css"
-import { NavigationContainer } from "@react-navigation/native";
+import "./global.css";
 
 export default function RootLayout() {
   return (
-    <Stack/>
+    <Stack screenOptions={{headerShown:false}}>
+      <Stack.Screen name="(tabs)" />
+    </Stack>
   );
 }
