@@ -1,16 +1,27 @@
 import { Tabs } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 
 export default function TabLayoutMain() {
   return (
     <Tabs
-      screenOptions={{ headerShown: false, tabBarActiveTintColor: "#83ee56" }}
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: "#83ee56",
+        tabBarShowLabel: false,
+      }}
     >
       <Tabs.Screen
         name="(Home)"
         options={{
           title: "Home",
-          tabBarIcon: () => <Ionicons name="home" size={20} color="black" />,
+          tabBarIcon: () => <AntDesign name="home" size={25} color="black" />,
+        }}
+      />
+      <Tabs.Screen
+        name="AddHomeWork"
+        options={{
+          title: "Add Homework",
+          tabBarIcon: () => <Ionicons name="add" size={30} color="black" />,
         }}
       />
       <Tabs.Screen
@@ -18,7 +29,7 @@ export default function TabLayoutMain() {
         options={{
           title: "Settings",
           tabBarIcon: () => (
-            <Ionicons name="settings" size={20} color="black" />
+            <Ionicons name="settings-outline" size={25} color="black" />
           ),
         }}
       />
