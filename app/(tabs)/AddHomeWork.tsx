@@ -11,15 +11,42 @@ const AddHomeWork = () => {
           </Text>
         </View>
         <View className="flex items-center gap-y-[2rem]">
-          <View className="h-[4rem] w-[90%] bg-gray-300 rounded-xl ">
-            <TextInput placeholder="homework titile" />
+          <View className="w-[90%] bg-gray-300 rounded-xl ">
+            <View className="my-[1rem]">
+              <TextInput
+                className="bg-white my-1 w-[90%] mx-auto rounded-lg "
+                placeholder="homework titile"
+              />
+              <View className="flex flex-row justify-around mt-3">
+                <TextInput
+                  className="bg-white rounded-lg w-[40%] "
+                  placeholder="Chapter/page"
+                />
+                <TextInput
+                  className="bg-white rounded-lg w-[40%]"
+                  placeholder="date"
+                  
+                />
+              </View>
+              <TextInput
+                className="bg-white mt-3 w-[90%] mx-auto rounded-lg "
+                placeholder="details"
+              />
+              <View>
+                {/* get images */}
+
+                <View>
+                  
+                </View>
+              </View>
+            </View>
           </View>
-          <View className="h-[4rem] w-[90%] bg-gray-300 rounded-xl">
+          {/* <View className="h-[4rem] w-[90%] bg-gray-300 rounded-xl">
             <Text>This is </Text>
           </View>
           <View className="h-[4rem] w-[90%] bg-gray-300 rounded-xl">
             <Text>This is </Text>
-          </View>
+          </View> */}
         </View>
       </View>
     </View>

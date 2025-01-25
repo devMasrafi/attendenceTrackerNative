@@ -8,8 +8,15 @@ export default function TabLayoutMain() {
         headerShown: false,
         tabBarActiveTintColor: "#83ee56",
         tabBarShowLabel: false,
+        tabBarStyle: {
+          position: "absolute",
+          bottom: 0,
+          borderTopWidth: 0,
+          backgroundColor: "#FFF",
+        },
+        tabBarHideOnKeyboard: true
       }}
-    >
+     >
       <Tabs.Screen
         name="(Home)"
         options={{
