@@ -1,5 +1,6 @@
 import { Tabs } from "expo-router";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { View } from "react-native";
 
 export default function TabLayoutMain() {
   return (
@@ -8,35 +9,47 @@ export default function TabLayoutMain() {
         headerShown: false,
         tabBarActiveTintColor: "#83ee56",
         tabBarShowLabel: false,
-        tabBarStyle: {
-          position: "absolute",
-          bottom: 0,
-          borderTopWidth: 0,
-          backgroundColor: "#FFF",
-        },
-        tabBarHideOnKeyboard: true
+        tabBarHideOnKeyboard: true,
       }}
-     >
+    >
       <Tabs.Screen
         name="(Home)"
         options={{
           title: "Home",
-          tabBarIcon: () => <AntDesign name="home" size={25} color="black" />,
+          tabBarIcon: ({ focused }) => (
+            <View className={focused ? "bg-" : ""}>
+              <AntDesign
+                name="home"
+                size={25}
+                color={focused ? "red" : "back"}
+              />
+            </View>
+          ),
         }}
       />
       <Tabs.Screen
         name="AddHomeWork"
         options={{
           title: "Add Homework",
-          tabBarIcon: () => <Ionicons name="add" size={30} color="black" />,
+          tabBarIcon: ({ focused }) => (
+            <View>
+              <Ionicons name="add" size={34} color={focused ? "red" : "back"} />
+            </View>
+          ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
           title: "Settings",
-          tabBarIcon: () => (
-            <Ionicons name="settings-outline" size={25} color="black" />
+          tabBarIcon: ({ focused }) => (
+            <View>
+              <Ionicons
+                name="settings-outline"
+                size={25}
+                color={focused ? "red" : "back"}
+              />
+            </View>
           ),
         }}
       />
