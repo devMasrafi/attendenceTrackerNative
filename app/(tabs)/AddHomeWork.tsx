@@ -1,15 +1,15 @@
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ScrollView,
+  TextInput,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { hide } from "expo-router/build/utils/splash";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const AddHomeWork = () => {
   interface Homework {
@@ -25,6 +25,20 @@ const AddHomeWork = () => {
   const handleVisiblity = () => {
     setIsFormVisible(!isFormVisible);
   };
+
+  // date picker
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (event: any, selectedDate: Date | undefined) => {
+    const currentDate = selectedDate || new Date();
+    setShowDatePicker(false);
+    setFormHomeworkInput({
+      ...formHomeworkInput,
+      date: currentDate.toLocaleDateString(),
+    });
+  };
+
   // AsyncStorage system setup
   const saveHomeworkList = async (homeworkList: Homework[]) => {
     try {
@@ -46,7 +60,7 @@ const AddHomeWork = () => {
     }
   };
 
-  // form handels
+  // form handles
   const [formHomeworkInput, setFormHomeworkInput] = useState({
     title: "",
     chapterpage: "",
@@ -90,7 +104,7 @@ const AddHomeWork = () => {
       chapterpage: "",
     });
 
-    alert("successfull");
+    alert("successful");
   };
 
   const handleFormClear = () => {
@@ -155,14 +169,25 @@ const AddHomeWork = () => {
                           handleHomeworkInput("chapterpage", Text)
                         }
                       />
-                      <TextInput
-                        className="bg-white rounded-lg w-[40%]"
-                        placeholder="Date"
-                        value={formHomeworkInput.date}
-                        onChangeText={(Text) =>
-                          handleHomeworkInput("date", Text)
-                        }
-                      />
+
+                      {/* date selection */}
+                      <TouchableOpacity
+                        className="bg-white rounded-lg w-[40%] justify-center px-2"
+                        onPress={() => setShowDatePicker(true)}
+                      >
+                        <Text>{formHomeworkInput.date || "Select Date"}</Text>
+                      </TouchableOpacity>
+
+                      {showDatePicker && (
+                        <DateTimePicker
+                          testID="dateTimePicker"
+                          value={selectedDate}
+                          mode="date"
+                          is24Hour={true}
+                          display="default"
+                          onChange={handleDateChange}
+                        />
+                      )}
                     </View>
                     <TextInput
                       className="bg-white mt-3 w-[90%] mx-auto rounded-lg h-[8rem] "
@@ -174,10 +199,6 @@ const AddHomeWork = () => {
                         handleHomeworkInput("details", Text)
                       }
                     />
-                    <View>
-                      {/* get images */}
-                      <View></View>
-                    </View>
                   </View>
                   <View className="my-[2rem] flex-row justify-between w-[90%] mx-auto">
                     <TouchableOpacity
