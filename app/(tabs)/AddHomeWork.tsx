@@ -5,10 +5,11 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { hide } from "expo-router/build/utils/splash";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AddHomeWork = () => {
   interface Homework {
@@ -23,6 +24,26 @@ const AddHomeWork = () => {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const handleVisiblity = () => {
     setIsFormVisible(!isFormVisible);
+  };
+  // AsyncStorage system setup
+  const saveHomeworkList = async (homeworkList: Homework[]) => {
+    try {
+      const jsonValue = JSON.stringify(homeworkList);
+      await AsyncStorage.setItem("@homeworkList", jsonValue);
+    } catch (error) {
+      console.error("failed to saved list data", error);
+    }
+  };
+
+  const loadHomeworkList = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("@homeworkList");
+      if (jsonValue != null) {
+        setHomeworkList(JSON.parse(jsonValue));
+      }
+    } catch (error) {
+      console.error("failed to load saved list data");
+    }
   };
 
   // form handels
@@ -56,7 +77,9 @@ const AddHomeWork = () => {
       details,
     };
 
-    setHomeworkList((prevList) => [...prevList, newHomework]);
+    const updatedHomeworkList = [...homeworkList, newHomework];
+    setHomeworkList(updatedHomeworkList);
+    saveHomeworkList(updatedHomeworkList);
 
     console.log("Homework Created Successfully", formHomeworkInput);
 
@@ -78,6 +101,10 @@ const AddHomeWork = () => {
       chapterpage: "",
     });
   };
+
+  useEffect(() => {
+    loadHomeworkList();
+  }, []);
 
   const handleEdit = (id: string) => {
     // Add your edit logic here
@@ -107,7 +134,7 @@ const AddHomeWork = () => {
                 className={`transition-all duration-300 ease-linear ${
                   isFormVisible ? "max-h-[500px]" : "max-h-0"
                 }`}
-                style={{overflow: "hidden"}}
+                style={{ overflow: "hidden" }}
               >
                 <View className="w-full bg-gray-300 rounded-xl ">
                   <View className="my-[1rem]">
@@ -170,7 +197,6 @@ const AddHomeWork = () => {
               </View>
             )}
 
-            
             <View className="mx-auto ">
               <TouchableOpacity
                 onPress={handleVisiblity}
