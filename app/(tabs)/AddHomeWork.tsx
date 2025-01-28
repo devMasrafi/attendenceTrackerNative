@@ -126,7 +126,7 @@ const AddHomeWork = () => {
 
   return (
     <SafeAreaView>
-      <ScrollView contentContainerClassName="bg-white h-full grow ">
+      <ScrollView contentContainerClassName="bg-primary-100 h-full grow ">
         <View className="w-[90%] mx-auto">
           <View>
             <Text className="text-center font-medium text-2xl capitalize tracking-wider my-[2rem]">
@@ -135,7 +135,9 @@ const AddHomeWork = () => {
           </View>
           <View className="">
             <View
-              className={isFormVisible ? "hidden" : "bg-gray-300 rounded-xl"}
+              className={
+                isFormVisible ? "hidden" : "bg-secondary-100  rounded-xl"
+              }
             >
               <Text className="text-center py-2 text-xl tracking-wide capitalize ">
                 Extend to input
@@ -150,10 +152,10 @@ const AddHomeWork = () => {
                 }`}
                 style={{ overflow: "hidden" }}
               >
-                <View className="w-full bg-gray-300 rounded-xl ">
+                <View className="w-full bg-secondary-100 rounded-xl ">
                   <View className="my-[1rem]">
                     <TextInput
-                      className="bg-white my-1 w-[90%] mx-auto rounded-lg "
+                      className="bg-primary-100 my-1 w-[90%] mx-auto rounded-lg "
                       placeholder="Homework Titile"
                       value={formHomeworkInput.title}
                       onChangeText={(text) =>
@@ -162,7 +164,7 @@ const AddHomeWork = () => {
                     />
                     <View className="flex flex-row justify-around mt-3">
                       <TextInput
-                        className="bg-white rounded-lg w-[40%] "
+                        className="bg-primary-100 rounded-lg w-[40%] "
                         placeholder="Chapter/Page"
                         value={formHomeworkInput.chapterpage}
                         onChangeText={(Text) =>
@@ -172,7 +174,7 @@ const AddHomeWork = () => {
 
                       {/* date selection */}
                       <TouchableOpacity
-                        className="bg-white rounded-lg w-[40%] justify-center px-2"
+                        className="bg-primary-100 rounded-lg w-[40%] justify-center px-2"
                         onPress={() => setShowDatePicker(true)}
                       >
                         <Text>{formHomeworkInput.date || "Select Date"}</Text>
@@ -190,7 +192,7 @@ const AddHomeWork = () => {
                       )}
                     </View>
                     <TextInput
-                      className="bg-white mt-3 w-[90%] mx-auto rounded-lg h-[8rem] "
+                      className="bg-primary-100 mt-3 w-[90%] mx-auto rounded-lg h-[8rem] "
                       placeholder="Details"
                       multiline
                       textAlignVertical="top"
@@ -203,13 +205,15 @@ const AddHomeWork = () => {
                   <View className="my-[2rem] flex-row justify-between w-[90%] mx-auto">
                     <TouchableOpacity
                       onPress={handleFormClear}
-                      className="px-[2rem] py-[0.5rem] bg-red-400 rounded-lg "
+                      className="px-[2rem] py-[0.5rem] bg-orange rounded-lg "
                     >
-                      <Text>clear</Text>
+                      <Text className="capitalize w-full text-primary-100 tracking-wider">
+                        clear
+                      </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={handleHomeworkSubmit}
-                      className="px-[2rem] py-[0.5rem] bg-orange-300 rounded-lg "
+                      className="px-[2rem] py-[0.5rem] bg-primary-100 rounded-lg "
                     >
                       <Text>Add Homework</Text>
                     </TouchableOpacity>
@@ -221,7 +225,7 @@ const AddHomeWork = () => {
             <View className="mx-auto ">
               <TouchableOpacity
                 onPress={handleVisiblity}
-                className="flex items-center bg-gray-300 px-[2rem] rounded-b-lg"
+                className="flex items-center bg-secondary-100 px-[2rem] rounded-b-lg"
               >
                 <AntDesign
                   className="text-center"
@@ -236,7 +240,7 @@ const AddHomeWork = () => {
           {/* lists */}
           <View className="mt-[4rem]">
             <View className="border rounded-lg h-[35rem]">
-              <View className="border-b flex-row p-2 bg-gray-200 rounded-t-lg">
+              <View className="border-b flex-row p-2 bg-blue-300 rounded-t-lg">
                 <Text className="flex-row flex-1 font-medium text-gray-700 text-xl ">
                   Chapter/Page
                 </Text>
@@ -247,6 +251,7 @@ const AddHomeWork = () => {
                   Edit
                 </Text>
               </View>
+
               {homeworkList.map((items) => (
                 <View
                   key={items.id}
