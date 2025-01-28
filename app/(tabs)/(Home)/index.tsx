@@ -2,6 +2,8 @@ import { View, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Calendar } from "react-native-calendars";
+import CalanderUtils from "@/app/utils/calanderUtils";
 
 const index = () => {
   const [homeworkList, setHomeworkList] = useState<any[]>([]);
@@ -21,6 +23,8 @@ const index = () => {
     loadHomeworkList();
   }, []);
 
+  // calander
+
   return (
     <SafeAreaView>
       <ScrollView contentContainerClassName="bg-white h-full grow">
@@ -32,28 +36,40 @@ const index = () => {
           </View>
           <View className="mt-3">
             <View className="mt-[1rem] flex items-center ">
-              <View className="flex items-center justify-center">
-                <View className="w-[25rem] h-[18rem] bg-gray-300 rounded-2xl mb-[3rem] ">
-                  <Text className="text-center ">calander</Text>
+              {/* calander */}
+              <View className="flex items-center justify-center ">
+                <View className="w-[25rem] h-[22rem] bg-gray-300 rounded-2xl mb-[3rem] ">
+                  <CalanderUtils />
                 </View>
               </View>
 
               {/* homewor-card */}
               <View className="">
-                <View className="w-[25rem] h-[8rem] bg-gray-300 rounded-2xl">
-                  {homeworkList.map((items) => (
-                    <View key={items.id}>
-                      <Text>{items.date}</Text>
-                    </View>
-                  ))}
-                  <Text className="text-center">Your Homework</Text>
+                <View className="w-[15rem] mx-auto mb-2 border-b border-primary-200 ">
+                  <Text className="text-center text-xl pb-2">
+                    Your Homework
+                  </Text>
+                </View>
+                <View className="w-[25rem] h-[8rem] bg-secondary-200 rounded-2xl mt-2">
+                  <View className="w-[90%] mx-auto my-2">
+                    {homeworkList.map((items) => (
+                      <View key={items.id}>
+                        <Text>{items.chapterpage}</Text>
+                      </View>
+                    ))}
+                  </View>
                 </View>
               </View>
 
               {/* class-card */}
-              <View>
-                <View className="w-[25rem] h-[8rem] bg-gray-300 rounded-2xl mt-[2rem] ">
-                  <Text className="text-center">you classes</Text>
+              <View className="mt-3">
+                <View className="w-[15rem] mx-auto mb-2 border-b border-primary-200 ">
+                  <Text className="text-center text-xl pb-2">Your Classes</Text>
+                </View>
+                <View className="w-[25rem] h-[8rem] bg-secondary-200  rounded-2xl ">
+                  <View className="w-[90%] mx-auto my-2">
+                    <Text>This</Text>
+                  </View>
                 </View>
               </View>
             </View>
