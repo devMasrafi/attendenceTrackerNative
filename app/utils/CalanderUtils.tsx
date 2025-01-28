@@ -4,10 +4,10 @@ import { Calendar } from "react-native-calendars";
 
 const CalanderUtils = () => {
   const [selectedDate, setSelectedDate] = useState("");
-  const [onDayPress, setOnDayPress] = useState<string>();
+//   const [onDayPress, setOnDayPress] = useState<string>();
 
   const handleDayPress = (day: any) => {
-    setSelectedDate(day.dateString); // Save selected date (format: YYYY-MM-DD)
+    setSelectedDate(day.dateString); 
   };
 
   return (
