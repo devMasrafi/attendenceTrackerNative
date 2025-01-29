@@ -50,26 +50,19 @@ const index = () => {
                     Your Homework
                   </Text>
                 </View>
-                <View className="w-[25rem] h-[8rem] bg-secondary-200 rounded-2xl mt-2">
-                  <View className="w-[90%] mx-auto my-2">
+                <View className="w-[25rem] h-[13rem] bg-secondary-200 rounded-2xl mt-2 overflow-hidden">
+                  <ScrollView contentContainerClassName="w-[90%] mx-auto my-2 px-2 py-2">
+                    <View className="flex-row justify-between border-b border-b-ascent-100">
+                      <Text className="text-xl pb-2 font-medium text-ascent-100/70">Chapter/Page</Text>
+                      <Text className="text-xl pb-2 font-medium text-ascent-100/70">Date</Text>
+                    </View>
                     {homeworkList.map((items) => (
-                      <View key={items.id}>
-                        <Text>{items.chapterpage}</Text>
+                      <View key={items.id} className="flex-row justify-between border-b border-b-ascent-100 ">
+                        <Text className="text-lg pb-1">{items.chapterpage}</Text>
+                        <Text className="text-lg pb-1">{items.date}</Text>
                       </View>
                     ))}
-                  </View>
-                </View>
-              </View>
-
-              {/* class-card */}
-              <View className="mt-3">
-                <View className="w-[15rem] mx-auto mb-2 border-b border-primary-200 ">
-                  <Text className="text-center text-xl pb-2">Your Classes</Text>
-                </View>
-                <View className="w-[25rem] h-[8rem] bg-secondary-200  rounded-2xl ">
-                  <View className="w-[90%] mx-auto my-2">
-                    <Text>This</Text>
-                  </View>
+                  </ScrollView>
                 </View>
               </View>
             </View>
