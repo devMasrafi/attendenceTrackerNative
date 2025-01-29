@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Calendar } from "react-native-calendars";
-import CalanderUtils from "@/app/utils/calanderUtils";
+import CalanderUtils from "@/app/utils/CalanderUtils";
 
 const index = () => {
   const [homeworkList, setHomeworkList] = useState<any[]>([]);
